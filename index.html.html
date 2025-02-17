@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Empresarial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0072CE;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-items a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn {
+            background-color: white;
+            color: #0072CE;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://www.itau.com.br/media/dam/m/1ec9c7103040af4d/original/imagem-homem-com-fone-e-mexendo-no-notebook-jpg.jpg');
+            background-size: cover;
+            background-position: center 25%;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            color: white;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            margin-left: 10%;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero .btn {
+            margin-top: 1rem;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 4rem 2rem;
+            background-color: #fff;
+        }
+
+        .info-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .star-container {
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .info-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .info-text ul {
+            margin-top: 1rem;
+            list-style: none;
+        }
+
+        .info-text li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-text li:before {
+            content: "•";
+            color: #0072CE;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: #0072CE;
+            padding: 4rem 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            flex: 1;
+            max-width: 350px;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .role {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            padding: 4rem 2rem;
+            background-color: #fff;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .mail-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form select {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0072CE;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .social-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Media Queries para Mobile */
+        @media (max-width: 768px) {
+            /* Header */
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-items {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            /* Hero Section */
+            .hero-content {
+                margin: 0;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            /* Info Section */
+            .info-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .star-container {
+                margin: 0 auto;
+            }
+
+            /* Testimonials */
+            .testimonials-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .testimonial-card {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            /* Contact Form */
+            .contact-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .contact-form input,
+            .contact-form select {
+                width: 100%;
+            }
+
+            /* Footer */
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        /* Media Query para telas muito pequenas */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            border: none;
+            background: none;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><div class="logo-icon"></div>Header fixa</div>
+        <nav class="nav-items">
+            <a href="https://www.amazon.com.br/s?k=notebook&__mk_pt_BR=ÅMÅŽÕÑ&crid=2NFWMVF0A5OJP&sprefix=notebook%2Caps%2C201&ref=nb_sb_noss_1" target="_blank">Notebooks</a>
+            <a href="https://www.amazon.com.br/s?k=smartphone&__mk_pt_BR=ÅMÅŽÕÑ&crid=1VVJF7P5YFQW4&sprefix=smartphone%2Caps%2C207&ref=nb_sb_noss_1" target="_blank">Smartphones</a>
+            <a href="https://www.amazon.com.br/s?k=tablet&__mk_pt_BR=ÅMÅŽÕÑ&crid=2QZRGDMV7IXQP&sprefix=tablet%2Caps%2C214&ref=nb_sb_noss_1" target="_blank">Tablets</a>
+            <a href="https://www.amazon.com.br/s?k=acessorios+eletronicos&__mk_pt_BR=ÅMÅŽÕÑ&crid=2NFWMVF0A5OJP&sprefix=acessorios+eletronicos%2Caps%2C201&ref=nb_sb_noss" target="_blank">Acessórios</a>
+        </nav>
+        <button class="btn" onclick="openModal()">Botão formulário</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Facilidade de Acesso em todo lugar</h1>
+            <button class="btn">Saiba mais</button>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-content">
+            <div class="star-container">
+                <svg viewBox="0 0 200 200">
+                    <path d="M100 0 L130 70 L200 70 L140 110 L160 180 L100 140 L40 180 L60 110 L0 70 L70 70 Z" fill="url(#gradient)"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#8A2BE2"/>
+                            <stop offset="100%" style="stop-color:#FF69B4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="info-text">
+                <h2>Informação na palma da mão</h2>
+                <p>Descubra a conveniência de ter tudo o que você precisa em um só lugar. Nossa loja oferece uma ampla variedade de produtos de qualidade, cuidadosamente selecionados para atender às suas necessidades. Compre com facilidade e receba diretamente no conforto da sua casa. Garantimos a melhor experiência de compra, com preços competitivos, entregas rápidas e um atendimento que faz a diferença. Explore nossa seleção e encontre o que você procura!</p>
+                
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Veja o que dizem sobre nosso produto</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Avatar" class="avatar">
+                    <div>
+                        <h3>Geovana Tarcísio</h3>
+                        <p class="role">CEO</p>
+                    </div>
+                </div>
+                <p>"Muito bom"</p>
+                <div class="rating">★★★★☆</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Avatar" class="avatar">
+                    <div>
+                        <h3>Mário Rocha</h3>
+                        <p class="role">Vendedor</p>
+                    </div>
+                </div>
+                    <p>"Perfeito!"</p>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Avatar" class="avatar">
+                    <div>
+                        <h3>Rodrigo Benvenutti</h3>
+                        <p class="role">Gestor Comercial</p>
+                    </div>
+                </div>
+                <p>"Gostei."</p>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Quer falar com a gente?</h2>
+                <p>Preencha o formulário ao lado, entraremos em contato em breve!</p>
+                <img src="https://img.freepik.com/fotos-premium/uma-jovem-funcionaria-alegre-envolvida-em-seu-trabalho-senta-se-em-uma-mesa-e-opera-um-laptop-o-con_890329-159.jpg"
+                 alt="Mulher sorrindo" class="contact-image">
+            </div>
+            
+            <form class="contact-form">
+                <input type="text" placeholder="Nome">
+                <input type="email" placeholder="E-mail">
+                <div class="form-row">
+                    <select id="estado">
+                        <option value="">Selecione o estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <input type="text" placeholder="Digite sua cidade">
+                </div>
+                <input type="text" placeholder="2 + 9 = ?">
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo">
+             </div>
+            <div>Contato: (47) 93476428</div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/dalpracaio?igsh=enpkeThvajJsbjEw&utm_source=qr" class="social-link" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="https://wa.me/5547993476428" class="social-link" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal do Formulário -->
+    <div class="modal" id="formModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2>Formulário de Contato</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="E-mail" required>
+                <div class="form-row">
+                    <select id="estadoModal" required>
+                        <option value="">Selecione o estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <input type="text" placeholder="Digite sua cidade" required>
+                </div>
+                <input type="text" placeholder="2 + 9 = ?" required>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('formModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('formModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar modal ao clicar fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('formModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
